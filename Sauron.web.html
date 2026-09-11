@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T.S.B.V. Sauron — Tilburg Student Badminton Association</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+
+  :root{
+    --court-green: #2C4A34;
+    --court-green-deep: #16261C;
+    --chalk: #F5F2EA;
+    --ink: #1A1D1B;
+    --cork: #D8451C;
+    --line-soft: #C6D2C1;
+    --max-w: 1100px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background: var(--chalk);
+    color: var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.55;
+  }
+  h1,h2,h3, .wordmark{
+    font-family:'Archivo Expanded', sans-serif;
+    letter-spacing: -0.01em;
+    margin:0;
+  }
+  a{ color:inherit; }
+  img,svg{ display:block; max-width:100%; }
+  .wrap{ max-width: var(--max-w); margin:0 auto; padding: 0 24px; }
+  section{ padding: 88px 0; }
+  @media (max-width:700px){ section{ padding: 56px 0; } }
+
+  .court-corner{ position:relative; }
+  .court-corner::before{
+    content:""; position:absolute; top:0; left:24px;
+    width:34px; height:34px;
+    border-top:3px solid var(--court-green);
+    border-left:3px solid var(--court-green);
+  }
+  @media (max-width:700px){ .court-corner::before{ display:none; } }
+
+  /* ---- nav ---- */
+  header.nav{
+    position: sticky; top:0; z-index:20;
+    background: rgba(245,242,234,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .nav-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 16px 24px; max-width: var(--max-w); margin:0 auto;
+  }
+  .wordmark{ font-size:1.05rem; font-weight:800; text-decoration:none; display:flex; align-items:center; gap:10px; }
+  .wordmark .mark{ width:20px; height:20px; }
+  .nav-links{ display:flex; gap:26px; list-style:none; margin:0; padding:0; font-size:0.92rem; font-weight:500; }
+  .nav-links a{ text-decoration:none; border-bottom:2px solid transparent; padding-bottom:2px; transition: border-color .15s; }
+  .nav-links a:hover, .nav-links a:focus-visible{ border-color: var(--cork); }
+  .nav-cta{ background: var(--cork); color:#fff; padding:9px 18px; border-radius:2px; text-decoration:none; font-weight:600; font-size:0.9rem; }
+  @media (max-width:760px){ .nav-links{ display:none; } }
+
+  /* ---- hero (photo-backed) ---- */
+  .hero{
+    position:relative; overflow:hidden; min-height:520px;
+    display:flex; align-items:flex-end;
+    color: var(--chalk);
+  }
+  .hero-photo{
+    position:absolute; inset:0;
+    background: linear-gradient(0deg, rgba(22,38,28,0.92) 0%, rgba(22,38,28,0.55) 45%, rgba(22,38,28,0.35) 100%),
+                var(--court-green);
+    background-size: cover; background-position:center;
+  }
+  /* Once you add your own photo, uncomment the line below and delete the one above */
+  /* .hero-photo{ background: linear-gradient(0deg, rgba(22,38,28,0.92) 0%, rgba(22,38,28,0.4) 60%), url('assets/hero.jpg') center/cover; } */
+  .hero-inner{ position:relative; max-width:640px; padding: 64px 0 56px; }
+  .eyebrow-line{ display:flex; align-items:center; gap:10px; font-size:0.85rem; color: #C9D9CB; margin-bottom:18px; }
+  .eyebrow-line .dash{ width:26px; height:2px; background:#C9D9CB; }
+  .hero h1{ font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight:800; line-height:1.08; }
+  .hero p.lede{ margin-top:18px; font-size:1.08rem; max-width:46ch; color:#DCE7DD; }
+  .hero-actions{ margin-top:30px; display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{ display:inline-block; padding:13px 26px; border-radius:2px; font-weight:600; text-decoration:none; font-size:0.95rem; transition: transform .12s ease; }
+  .btn:hover{ transform: translateY(-1px); }
+  .btn-primary{ background: var(--cork); color:#fff; }
+  .btn-ghost{ border:1px solid #7FA083; color:#F5F2EA; }
+
+  /* ---- section headers ---- */
+  .section-head{ max-width:580px; margin-bottom:44px; padding-top: 8px; padding-left:24px; }
+  .section-head .kicker{ font-size:0.82rem; color:var(--cork); font-weight:600; margin-bottom:10px; }
+  .section-head h2{ font-size:2rem; font-weight:800; }
+  .section-head p{ margin-top:12px; color:#4B524D; }
+
+  /* ---- about ---- */
+  .about-grid{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap:56px; align-items:start; }
+  @media (max-width:800px){ .about-grid{ grid-template-columns:1fr; } }
+  .about-grid p + p{ margin-top:14px; }
+  .about-figure{ border:1px solid var(--line-soft); overflow:hidden; background:#fff; }
+  .about-figure img{ width:100%; height:260px; object-fit:cover; display:block; }
+  .about-figure figcaption{ font-size:0.85rem; color:#5A6156; padding:14px 16px; }
+
+  /* ---- levels ---- */
+  .levels{ background:#EFEBDF; }
+  .level-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line-soft); border:1px solid var(--line-soft); }
+  @media (max-width:800px){ .level-grid{ grid-template-columns:1fr; } }
+  .level-card{ background:#F5F2EA; padding:30px 26px; }
+  .level-card .tag{ font-size:0.78rem; font-weight:600; color:var(--cork); margin-bottom:10px; }
+  .level-card h3{ font-size:1.15rem; font-weight:700; margin-bottom:10px; }
+  .level-card p{ font-size:0.92rem; color:#4B524D; margin:0; }
+
+  /* ---- join / steps ---- */
+  .steps{ counter-reset: step; list-style:none; margin:0; padding:0; display:grid; gap:0; }
+  .steps li{ counter-increment: step; display:grid; grid-template-columns: 64px 1fr; gap:20px; padding: 22px 24px; border-top:1px solid var(--line-soft); }
+  .steps li:last-child{ border-bottom:1px solid var(--line-soft); }
+  .steps li::before{ content: counter(step, decimal-leading-zero); font-family:'Archivo Expanded', sans-serif; font-weight:800; font-size:1.3rem; color: var(--court-green); }
+  .steps h3{ font-size:1.05rem; font-weight:600; margin-bottom:6px; }
+  .steps p{ color:#4B524D; margin:0; font-size:0.95rem; }
+  .join-panel{ margin-top:36px; margin-left:24px; margin-right:24px; background: var(--court-green); color:#F5F2EA; padding:32px; display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; }
+  .join-panel .fee{ font-size:0.95rem; color:#C9D9CB; }
+  .join-panel strong{ display:block; font-size:1.3rem; font-family:'Archivo Expanded', sans-serif; }
+
+  /* ---- events ---- */
+  .events-list{ display:grid; gap:0; margin-left:24px; margin-right:24px; }
+  .event-row{ display:grid; grid-template-columns: 96px 1fr auto; gap:22px; align-items:center; padding:20px 0; border-top:1px solid var(--line-soft); }
+  .events-list .events-empty{ padding: 20px 0; color:#5A6156; border-top:1px solid var(--line-soft); }
+  .event-date{ background: var(--chalk); border:1px solid var(--court-green); text-align:center; padding:10px 6px; }
+  .event-date .d{ font-family:'Archivo Expanded', sans-serif; font-weight:800; font-size:1.3rem; line-height:1; color:var(--court-green); }
+  .event-date .m{ font-size:0.72rem; text-transform:uppercase; letter-spacing:.06em; color:#4B524D; }
+  .event-name{ font-weight:600; }
+  .event-loc{ font-size:0.88rem; color:#5A6156; margin-top:3px; }
+  .event-time{ font-size:0.88rem; color:#4B524D; white-space:nowrap; }
+  @media (max-width:600px){ .event-row{ grid-template-columns: 72px 1fr; } .event-time{ grid-column: 2; } }
+
+  /* ---- location / contact ---- */
+  .loc-grid{ display:grid; grid-template-columns:1fr 1fr; gap:56px; }
+  @media (max-width:800px){ .loc-grid{ grid-template-columns:1fr; } }
+  .loc-block dt{ font-size:0.78rem; text-transform:uppercase; letter-spacing:.05em; color:#5A6156; margin-top:18px; }
+  .loc-block dt:first-child{ margin-top:0; }
+  .loc-block dd{ margin:4px 0 0; font-size:1rem; }
+  .loc-block a{ text-decoration:underline; }
+
+  footer{ background: var(--court-green-deep); color:#DCE7DD; padding:56px 0 32px; }
+  .foot-row{ display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+  .foot-links{ display:flex; gap:20px; list-style:none; padding:0; margin:0; }
+  .foot-links a{ text-decoration:none; color:#DCE7DD; border-bottom:1px solid transparent; }
+  .foot-links a:hover{ border-color:#7FA083; }
+  .foot-fine{ margin-top:36px; font-size:0.8rem; color:#8FA890; border-top:1px solid #33513C; padding-top:20px; }
+
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } .btn{ transition:none; } }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-row">
+    <a href="#top" class="wordmark">
+      <svg class="mark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2 L12 22 M2 12 L22 12" stroke="#2C4A34" stroke-width="2"/>
+        <circle cx="12" cy="12" r="9" stroke="#D8451C" stroke-width="2"/>
+      </svg>
+      T.S.B.V. Sauron
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#levels">Levels</a></li>
+      <li><a href="#join">Join</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#join" class="nav-cta">Become a member</a>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-photo"></div>
+  <div class="wrap hero-inner">
+    <div class="eyebrow-line"><span class="dash"></span> Student badminton association, Tilburg University</div>
+    <h1>Badminton for beginners and third-division competitors alike.</h1>
+    <p class="lede">T.S.B.V. Sauron is Tilburg University's badminton club — training runs across three levels at the Sports Center, from first-touch technique to competitive league play.</p>
+    <div class="hero-actions">
+      <a href="#join" class="btn btn-primary">Become a member</a>
+      <a href="#levels" class="btn btn-ghost">See the levels</a>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="court-corner">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">About the club</div>
+      <h2>Run by students, on university courts</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>Sauron is the student badminton association at Tilburg University, and one of the racket sports clubs based at the Sports Center. Training is organised across three levels, so you're grouped with players working on similar things — whether that's learning to count a rally and hold a racket properly, or drilling attacking and defensive doubles tactics for league matches.</p>
+        <p>Alongside organised training, there's plenty of room to just play — the Sports Center keeps daytime slots open for members who want to book a court independently.</p>
+        <p>The club competes in the regional league, with the top squad currently playing third division.</p>
+      </div>
+      <figure class="about-figure">
+        <!-- Swap this for a real club photo: replace src with assets/about.jpg once you've uploaded one -->
+        <img src="https://images.unsplash.com/photo-1521537634581-0dced2fee2ef?q=80&w=800&auto=format&fit=crop" alt="Badminton players on an indoor court" loading="lazy">
+        <figcaption>Training happens at the Sports Center — Olympia building, Academielaan 5.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="levels" class="levels court-corner">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Training groups</div>
+      <h2>Three levels, one club</h2>
+      <p>Registration is required to join level 1 and 2 training groups.</p>
+    </div>
+  </div>
+  <div class="wrap" style="padding:0 24px;">
+    <div class="level-grid">
+      <div class="level-card">
+        <div class="tag">Level 3 · Beginners</div>
+        <h3>Learning the fundamentals</h3>
+        <p>Footwork, grip, scoring, and stroke technique for each shot, plus match play as you go. The right starting point if you're new to the sport or haven't played competitively before.</p>
+      </div>
+      <div class="level-card">
+        <div class="tag">Level 2 · Intermediate</div>
+        <h3>Building match tactics</h3>
+        <p>For players with some league experience who already have the basic strokes down. Focus shifts to doubles tactics, attacking and defensive positioning, and singles strategy.</p>
+      </div>
+      <div class="level-card">
+        <div class="tag">Level 1 · Competitive</div>
+        <h3>Training the top teams</h3>
+        <p>Technical and tactical training for the club's highest teams, including circuit and speed work and specialty strokes like the cut smash, drop, flick serve, and drive.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="join" class="join court-corner" style="background:#EFEBDF;">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">How to join</div>
+      <h2>Three steps to your first session</h2>
+      <p>Membership runs per semester. New to the sport? Come try a session first — just email us so we know to expect you.</p>
+    </div>
+    <ol class="steps">
+      <li><div><h3>Fill in the registration form</h3><p>Name, student number, and which level fits you best. Takes about two minutes.</p></div></li>
+      <li><div><h3>Pay the membership fee</h3><p>Covers your spot in training and league costs where relevant. Payment instructions are on the confirmation page.</p></div></li>
+      <li><div><h3>Check the sports schedule and show up</h3><p>Training times and courts are listed on the Sports Center's schedule — you'll also get added to the club group chat for any changes.</p></div></li>
+    </ol>
+  </div>
+  <div class="join-panel">
+    <div class="fee">Semester membership<strong>€[amount]</strong></div>
+    <a href="#" class="btn btn-primary" id="join-link">Open registration form →</a>
+  </div>
+</section>
+
+<section id="events" class="court-corner">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Upcoming</div>
+      <h2>Training & events</h2>
+      <p>Weekly training per level, plus league matches and socials. Exact court times are on the Sports Center schedule — edit the list below to match yours.</p>
+    </div>
+    <div class="events-list" id="events-list"></div>
+  </div>
+</section>
+
+<section id="contact" class="court-corner">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Location & contact</div>
+      <h2>Find us at the Sports Center</h2>
+    </div>
+    <div class="loc-grid">
+      <dl class="loc-block">
+        <dt>Address</dt>
+        <dd>Olympia building<br>Academielaan 5<br>5037 ET Tilburg</dd>
+        <dt>Sports Center phone</dt>
+        <dd><a href="tel:0134663010">013 466 3010</a></dd>
+        <dt>Full sports schedule</dt>
+        <dd><a href="https://www.tilburguniversity.edu/nl/campus/sports-center/sportrooster" target="_blank" rel="noopener">tilburguniversity.edu/sportrooster</a></dd>
+      </dl>
+      <dl class="loc-block">
+        <dt>Club email</dt>
+        <dd><a href="mailto:info@[sauron-club].nl">info@[sauron-club].nl</a></dd>
+        <dt>Instagram</dt>
+        <dd><a href="https://instagram.com" target="_blank" rel="noopener">@[club_instagram]</a></dd>
+        <dt>Questions before joining?</dt>
+        <dd>We usually reply within a day.</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <div class="wordmark" style="color:#F5F2EA;">T.S.B.V. Sauron</div>
+    <ul class="foot-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#join">Join</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+    </ul>
+  </div>
+  <div class="wrap foot-fine">T.S.B.V. Sauron — badminton association at Tilburg University's Sports Center.</div>
+</footer>
+
+<script>
+  // ---- Edit this array to update the Events section. No HTML editing needed. ----
+  const EVENTS = [
+    { day: "16", month: "Sep", name: "Level 3 training", loc: "Sports Center, Olympia building", time: "19:00–20:30" },
+    { day: "18", month: "Sep", name: "Level 2 training", loc: "Sports Center, Olympia building", time: "20:00–21:30" },
+    { day: "04", month: "Oct", name: "Beginners' welcome night", loc: "Sports Center, Olympia building", time: "19:00–21:00" },
+  ];
+
+  const list = document.getElementById('events-list');
+  list.innerHTML = EVENTS.length === 0
+    ? '<div class="events-empty">No events scheduled yet — check back soon.</div>'
+    : EVENTS.map(e => `
+      <div class="event-row">
+        <div class="event-date"><div class="d">${e.day}</div><div class="m">${e.month}</div></div>
+        <div><div class="event-name">${e.name}</div><div class="event-loc">${e.loc}</div></div>
+        <div class="event-time">${e.time}</div>
+      </div>
+    `).join('');
+
+  // ---- Replace with your real Google Form link ----
+  document.getElementById('join-link').href = "https://forms.google.com/your-form-link";
+</script>
+
+</body>
+</html>
