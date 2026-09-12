@@ -11,10 +11,10 @@ Static website for T.S.B.V. Sauron.
 ## Edit locally in Cursor
 
 1. Open this repository folder in Cursor.
-2. Edit `/home/runner/work/Sauron-badminton/Sauron-badminton/index.html`.
-3. Put any photos you want to use in `/home/runner/work/Sauron-badminton/Sauron-badminton/assets`.
+2. Edit `index.html`.
+3. Put any photos you want to use in `assets/`.
 4. Save your changes.
-5. Preview by opening `/home/runner/work/Sauron-badminton/Sauron-badminton/index.html` in your browser and refreshing after each save.
+5. Preview by opening `index.html` in your browser and refreshing after each save.
 
 ## Publish the site
 
@@ -73,5 +73,5 @@ Google indexing is not instant, but this helps the site become searchable.
 - Update the About text in the three paragraphs under the `#about` section.
 - Update the hero background by changing the `.hero-photo` CSS block.
 - Update the About image by changing the `<img src="...">` inside the About section.
-- Replace the placeholder Google Form URL in the script at the bottom of `index.html`.
+- Replace the placeholder Google Form URL in the join button `href` inside `index.html`.
 - Replace the placeholder email and Instagram values in the contact section.
