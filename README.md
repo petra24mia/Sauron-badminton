@@ -41,7 +41,7 @@ Static website for T.S.B.V. Sauron.
 Check that:
 
 - the homepage loads
-- the hero and About images load
+- the About image loads, and the hero background still looks correct before or after you add `assets/hero.jpg`
 - the buttons and links work
 - the site looks correct on desktop and mobile
 
