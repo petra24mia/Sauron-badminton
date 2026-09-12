@@ -63,7 +63,8 @@ If something is wrong, edit locally, push the change to GitHub, and let Netlify 
 1. Open Google Search Console.
 2. Add your live domain as a property.
 3. Verify domain ownership.
-4. Request indexing for the homepage.
+4. Request indexing for the homepage with URL Inspection.
+5. If you later add `robots.txt` and `sitemap.xml`, submit the sitemap there as well.
 
 Google indexing is not instant, but this helps the site become searchable.
 
