@@ -255,7 +255,7 @@
   </div>
   <div class="join-panel">
     <div class="fee">Semester membership<strong>€[amount]</strong></div>
-    <a class="btn btn-primary btn-disabled" id="join-link" aria-disabled="true">Add registration form link</a>
+    <a href="#join" class="btn btn-primary btn-disabled" id="join-link" aria-disabled="true">Add registration form link</a>
   </div>
 </section>
 
@@ -370,6 +370,8 @@
     joinLink.textContent = 'Open registration form →';
     joinLink.classList.remove('btn-disabled');
     joinLink.removeAttribute('aria-disabled');
+  } else {
+    joinLink.addEventListener('click', (event) => event.preventDefault());
   }
 </script>
 
