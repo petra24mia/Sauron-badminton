@@ -89,7 +89,6 @@
   .btn:hover{ transform: translateY(-1px); }
   .btn-primary{ background: var(--cork); color:#fff; cursor:pointer; }
   .btn-ghost{ border:1px solid #7FA083; color:#F5F2EA; }
-  .btn-disabled{ opacity:.7; cursor:not-allowed; }
 
   /* ---- section headers ---- */
   .section-head{ max-width:580px; margin-bottom:44px; padding-top: 8px; padding-left:24px; }
@@ -124,6 +123,7 @@
   .join-panel{ margin-top:36px; margin-left:24px; margin-right:24px; background: var(--court-green); color:#F5F2EA; padding:32px; display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; }
   .join-panel .fee{ font-size:0.95rem; color:#C9D9CB; }
   .join-panel strong{ display:block; font-size:1.3rem; font-family:'Archivo Expanded', sans-serif; }
+  .join-note{ margin:0; font-size:0.95rem; color:#DCE7DD; max-width:34ch; }
 
   /* ---- events ---- */
   .events-list{ display:grid; gap:0; margin-left:24px; margin-right:24px; }
@@ -204,7 +204,7 @@
       </div>
       <figure class="about-figure">
         <!-- Swap this for a real club photo: replace src with assets/about.jpg once you've uploaded one -->
-        <img src="assets/about-placeholder.svg" alt="" loading="lazy">
+        <img src="assets/about-placeholder.svg" alt="Stylized badminton player illustration on a court" loading="lazy">
         <figcaption>Training happens at the Sports Center — Olympia building, Academielaan 5.</figcaption>
       </figure>
     </div>
@@ -255,7 +255,7 @@
   </div>
   <div class="join-panel">
     <div class="fee">Semester membership<strong>€[amount]</strong></div>
-    <button type="button" class="btn btn-primary btn-disabled" id="join-link" disabled>Add registration form link</button>
+    <div id="join-cta"><p class="join-note">Add your registration form link in the script below to enable online signup.</p></div>
   </div>
 </section>
 
@@ -364,14 +364,13 @@
 
   // ---- Replace with your real Google Form link to enable the registration button. ----
   const JOIN_FORM_URL = "";
-  const joinLink = document.getElementById('join-link');
+  const joinCta = document.getElementById('join-cta');
   if (JOIN_FORM_URL) {
+    const joinLink = document.createElement('a');
+    joinLink.href = JOIN_FORM_URL;
+    joinLink.className = 'btn btn-primary';
     joinLink.textContent = 'Open registration form →';
-    joinLink.classList.remove('btn-disabled');
-    joinLink.disabled = false;
-    joinLink.addEventListener('click', () => {
-      window.location.href = JOIN_FORM_URL;
-    });
+    joinCta.replaceChildren(joinLink);
   }
 </script>
 
