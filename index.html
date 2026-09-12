@@ -85,11 +85,11 @@
   .hero h1{ font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight:800; line-height:1.08; }
   .hero p.lede{ margin-top:18px; font-size:1.08rem; max-width:46ch; color:#DCE7DD; }
   .hero-actions{ margin-top:30px; display:flex; gap:14px; flex-wrap:wrap; }
-  .btn{ display:inline-block; padding:13px 26px; border-radius:2px; font-weight:600; text-decoration:none; font-size:0.95rem; transition: transform .12s ease; }
+  .btn{ display:inline-block; padding:13px 26px; border-radius:2px; border:0; font-weight:600; text-decoration:none; font-size:0.95rem; font-family:inherit; transition: transform .12s ease; }
   .btn:hover{ transform: translateY(-1px); }
-  .btn-primary{ background: var(--cork); color:#fff; }
+  .btn-primary{ background: var(--cork); color:#fff; cursor:pointer; }
   .btn-ghost{ border:1px solid #7FA083; color:#F5F2EA; }
-  .btn-disabled{ opacity:.7; pointer-events:none; }
+  .btn-disabled{ opacity:.7; cursor:not-allowed; }
 
   /* ---- section headers ---- */
   .section-head{ max-width:580px; margin-bottom:44px; padding-top: 8px; padding-left:24px; }
@@ -255,7 +255,7 @@
   </div>
   <div class="join-panel">
     <div class="fee">Semester membership<strong>€[amount]</strong></div>
-    <a href="#join" class="btn btn-primary btn-disabled" id="join-link" aria-disabled="true">Add registration form link</a>
+    <button type="button" class="btn btn-primary btn-disabled" id="join-link" disabled>Add registration form link</button>
   </div>
 </section>
 
@@ -366,12 +366,12 @@
   const JOIN_FORM_URL = "";
   const joinLink = document.getElementById('join-link');
   if (JOIN_FORM_URL) {
-    joinLink.href = JOIN_FORM_URL;
     joinLink.textContent = 'Open registration form →';
     joinLink.classList.remove('btn-disabled');
-    joinLink.removeAttribute('aria-disabled');
-  } else {
-    joinLink.addEventListener('click', (event) => event.preventDefault());
+    joinLink.disabled = false;
+    joinLink.addEventListener('click', () => {
+      window.location.href = JOIN_FORM_URL;
+    });
   }
 </script>
 
