@@ -73,5 +73,5 @@ Google indexing is not instant, but this helps the site become searchable.
 - Update the About text in the three paragraphs under the `#about` section.
 - Update the hero background by changing the `.hero-photo` CSS block.
 - Update the About image by changing the `<img src="...">` inside the About section.
-- Replace the placeholder Google Form URL in the join button `href` inside `index.html`.
-- Replace the placeholder email and Instagram values in the contact section.
+- Replace the `JOIN_FORM_URL` value at the bottom of `index.html` to enable the join button.
+- Replace the placeholder email and Instagram text in the contact section.

@@ -89,6 +89,7 @@
   .btn:hover{ transform: translateY(-1px); }
   .btn-primary{ background: var(--cork); color:#fff; }
   .btn-ghost{ border:1px solid #7FA083; color:#F5F2EA; }
+  .btn-disabled{ opacity:.7; pointer-events:none; }
 
   /* ---- section headers ---- */
   .section-head{ max-width:580px; margin-bottom:44px; padding-top: 8px; padding-left:24px; }
@@ -254,7 +255,7 @@
   </div>
   <div class="join-panel">
     <div class="fee">Semester membership<strong>€[amount]</strong></div>
-    <a href="https://forms.google.com/your-form-link" class="btn btn-primary" id="join-link">Open registration form →</a>
+    <a class="btn btn-primary btn-disabled" id="join-link" aria-disabled="true">Add registration form link</a>
   </div>
 </section>
 
@@ -286,9 +287,9 @@
       </dl>
       <dl class="loc-block">
         <dt>Club email</dt>
-        <dd><a href="mailto:info@[sauron-club].nl">info@[sauron-club].nl</a></dd>
+        <dd>Replace with your club email address</dd>
         <dt>Instagram</dt>
-        <dd><a href="https://instagram.com" target="_blank" rel="noopener">@[club_instagram]</a></dd>
+        <dd>Replace with your club Instagram handle</dd>
         <dt>Questions before joining?</dt>
         <dd>We usually reply within a day.</dd>
       </dl>
@@ -318,16 +319,58 @@
   ];
 
   const list = document.getElementById('events-list');
-  list.innerHTML = EVENTS.length === 0
-    ? '<div class="events-empty">No events scheduled yet — check back soon.</div>'
-    : EVENTS.map(e => `
-      <div class="event-row">
-        <div class="event-date"><div class="d">${e.day}</div><div class="m">${e.month}</div></div>
-        <div><div class="event-name">${e.name}</div><div class="event-loc">${e.loc}</div></div>
-        <div class="event-time">${e.time}</div>
-      </div>
-    `).join('');
+  if (EVENTS.length === 0) {
+    const empty = document.createElement('div');
+    empty.className = 'events-empty';
+    empty.textContent = 'No events scheduled yet — check back soon.';
+    list.appendChild(empty);
+  } else {
+    EVENTS.forEach((eventItem) => {
+      const row = document.createElement('div');
+      row.className = 'event-row';
 
+      const date = document.createElement('div');
+      date.className = 'event-date';
+
+      const day = document.createElement('div');
+      day.className = 'd';
+      day.textContent = eventItem.day;
+
+      const month = document.createElement('div');
+      month.className = 'm';
+      month.textContent = eventItem.month;
+
+      date.append(day, month);
+
+      const details = document.createElement('div');
+      const name = document.createElement('div');
+      name.className = 'event-name';
+      name.textContent = eventItem.name;
+
+      const location = document.createElement('div');
+      location.className = 'event-loc';
+      location.textContent = eventItem.loc;
+
+      details.append(name, location);
+
+      const time = document.createElement('div');
+      time.className = 'event-time';
+      time.textContent = eventItem.time;
+
+      row.append(date, details, time);
+      list.appendChild(row);
+    });
+  }
+
+  // ---- Replace with your real Google Form link to enable the registration button. ----
+  const JOIN_FORM_URL = "";
+  const joinLink = document.getElementById('join-link');
+  if (JOIN_FORM_URL) {
+    joinLink.href = JOIN_FORM_URL;
+    joinLink.textContent = 'Open registration form →';
+    joinLink.classList.remove('btn-disabled');
+    joinLink.removeAttribute('aria-disabled');
+  }
 </script>
 
 </body>
