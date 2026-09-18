@@ -62,7 +62,23 @@
   .nav-links{ display:flex; gap:26px; list-style:none; margin:0; padding:0; font-size:0.92rem; font-weight:500; }
   .nav-links a{ text-decoration:none; border-bottom:2px solid transparent; padding-bottom:2px; transition: border-color .15s; }
   .nav-links a:hover, .nav-links a:focus-visible{ border-color: var(--cork); }
+  .nav-actions{ display:flex; align-items:center; gap:12px; }
   .nav-cta{ background: var(--cork); color:#fff; padding:9px 18px; border-radius:2px; text-decoration:none; font-weight:600; font-size:0.9rem; }
+  .lang-switcher{ display:flex; gap:8px; }
+  .lang-switcher button{
+    width:34px; height:34px; padding:0;
+    border:1px solid var(--line-soft); border-radius:999px;
+    background:#fff; cursor:pointer; font-size:1rem; line-height:1;
+    display:grid; place-items:center;
+  }
+  .lang-switcher button[aria-pressed="true"]{
+    border-color: var(--cork);
+    box-shadow: inset 0 0 0 1px var(--cork);
+  }
+  .sr-only{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
   @media (max-width:760px){ .nav-links{ display:none; } }
 
   /* ---- hero (photo-backed) ---- */
@@ -167,25 +183,31 @@
       T.S.B.V. Sauron
     </a>
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#levels">Levels</a></li>
-      <li><a href="#join">Join</a></li>
-      <li><a href="#events">Events</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about" data-i18n="navAbout">About</a></li>
+      <li><a href="#levels" data-i18n="navLevels">Levels</a></li>
+      <li><a href="#join" data-i18n="navJoin">Join</a></li>
+      <li><a href="#events" data-i18n="navEvents">Events</a></li>
+      <li><a href="#contact" data-i18n="navContact">Contact</a></li>
     </ul>
-    <a href="#join" class="nav-cta">Become a member</a>
+    <div class="nav-actions">
+      <a href="#join" class="nav-cta" data-i18n="navCta">Become a member</a>
+      <div class="lang-switcher" aria-label="Language switcher">
+        <button type="button" data-lang="en" aria-pressed="true" aria-label="Switch to English">🇬🇧</button>
+        <button type="button" data-lang="nl" aria-pressed="false" aria-label="Schakel naar Nederlands">🇳🇱</button>
+      </div>
+    </div>
   </div>
 </header>
 
 <section class="hero">
   <div class="hero-photo"></div>
   <div class="wrap hero-inner">
-    <div class="eyebrow-line"><span class="dash"></span> Student badminton association, Tilburg University</div>
-    <h1>Badminton for beginners and third-division competitors alike.</h1>
-    <p class="lede">T.S.B.V. Sauron is Tilburg University's badminton club — training runs across three levels at the Sports Center, from first-touch technique to competitive league play.</p>
+    <div class="eyebrow-line"><span class="dash"></span><span data-i18n="heroEyebrow">Student badminton association, Tilburg University</span></div>
+    <h1 data-i18n="heroTitle">Badminton for beginners and third-division competitors alike.</h1>
+    <p class="lede" data-i18n="heroLede">T.S.B.V. Sauron is Tilburg University's badminton club — training runs across three levels at the Sports Center, from first-touch technique to competitive league play.</p>
     <div class="hero-actions">
-      <a href="#join" class="btn btn-primary">Become a member</a>
-      <a href="#levels" class="btn btn-ghost">See the levels</a>
+      <a href="#join" class="btn btn-primary" data-i18n="heroPrimaryCta">Become a member</a>
+      <a href="#levels" class="btn btn-ghost" data-i18n="heroSecondaryCta">See the levels</a>
     </div>
   </div>
 </section>
@@ -193,19 +215,19 @@
 <section id="about" class="court-corner">
   <div class="wrap">
     <div class="section-head">
-      <div class="kicker">About the club</div>
-      <h2>Run by students, on university courts</h2>
+      <div class="kicker" data-i18n="aboutKicker">About the club</div>
+      <h2 data-i18n="aboutTitle">Run by students, on university courts</h2>
     </div>
     <div class="about-grid">
       <div>
-        <p>Sauron is the student badminton association at Tilburg University, and one of the racket sports clubs based at the Sports Center. Training is organised across three levels, so you're grouped with players working on similar things — whether that's learning to count a rally and hold a racket properly, or drilling attacking and defensive doubles tactics for league matches.</p>
-        <p>Alongside organised training, there's plenty of room to just play — the Sports Center keeps daytime slots open for members who want to book a court independently.</p>
-        <p>The club competes in the regional league, with the top squad currently playing third division.</p>
+        <p data-i18n="aboutBody1">Sauron is the student badminton association at Tilburg University, and one of the racket sports clubs based at the Sports Center. Training is organised across three levels, so you're grouped with players working on similar things — whether that's learning to count a rally and hold a racket properly, or drilling attacking and defensive doubles tactics for league matches.</p>
+        <p data-i18n="aboutBody2">Alongside organised training, there's plenty of room to just play — the Sports Center keeps daytime slots open for members who want to book a court independently.</p>
+        <p data-i18n="aboutBody3">The club competes in the regional league, with the top squad currently playing third division.</p>
       </div>
       <figure class="about-figure">
         <!-- Swap this for a real club photo: replace src with assets/about.jpg once you've uploaded one -->
-        <img src="assets/about-placeholder.svg" alt="Stylized badminton player illustration on a court" loading="lazy">
-        <figcaption>Training happens at the Sports Center — Olympia building, Academielaan 5.</figcaption>
+        <img src="assets/about-placeholder.svg" alt="Stylized badminton player illustration on a court" loading="lazy" data-i18n-alt="aboutImageAlt">
+        <figcaption data-i18n="aboutCaption">Training happens at the Sports Center — Olympia building, Academielaan 5.</figcaption>
       </figure>
     </div>
   </div>
@@ -214,27 +236,27 @@
 <section id="levels" class="levels court-corner">
   <div class="wrap">
     <div class="section-head">
-      <div class="kicker">Training groups</div>
-      <h2>Three levels, one club</h2>
-      <p>Registration is required to join level 1 and 2 training groups.</p>
+      <div class="kicker" data-i18n="levelsKicker">Training groups</div>
+      <h2 data-i18n="levelsTitle">Three levels, one club</h2>
+      <p data-i18n="levelsIntro">Registration is required to join level 1 and 2 training groups.</p>
     </div>
   </div>
   <div class="wrap" style="padding:0 24px;">
     <div class="level-grid">
       <div class="level-card">
-        <div class="tag">Level 3 · Beginners</div>
-        <h3>Learning the fundamentals</h3>
-        <p>Footwork, grip, scoring, and stroke technique for each shot, plus match play as you go. The right starting point if you're new to the sport or haven't played competitively before.</p>
+        <div class="tag" data-i18n="level3Tag">Level 3 · Beginners</div>
+        <h3 data-i18n="level3Title">Learning the fundamentals</h3>
+        <p data-i18n="level3Body">Footwork, grip, scoring, and stroke technique for each shot, plus match play as you go. The right starting point if you're new to the sport or haven't played competitively before.</p>
       </div>
       <div class="level-card">
-        <div class="tag">Level 2 · Intermediate</div>
-        <h3>Building match tactics</h3>
-        <p>For players with some league experience who already have the basic strokes down. Focus shifts to doubles tactics, attacking and defensive positioning, and singles strategy.</p>
+        <div class="tag" data-i18n="level2Tag">Level 2 · Intermediate</div>
+        <h3 data-i18n="level2Title">Building match tactics</h3>
+        <p data-i18n="level2Body">For players with some league experience who already have the basic strokes down. Focus shifts to doubles tactics, attacking and defensive positioning, and singles strategy.</p>
       </div>
       <div class="level-card">
-        <div class="tag">Level 1 · Competitive</div>
-        <h3>Training the top teams</h3>
-        <p>Technical and tactical training for the club's highest teams, including circuit and speed work and specialty strokes like the cut smash, drop, flick serve, and drive.</p>
+        <div class="tag" data-i18n="level1Tag">Level 1 · Competitive</div>
+        <h3 data-i18n="level1Title">Training the top teams</h3>
+        <p data-i18n="level1Body">Technical and tactical training for the club's highest teams, including circuit and speed work and specialty strokes like the cut smash, drop, flick serve, and drive.</p>
       </div>
     </div>
   </div>
@@ -243,18 +265,18 @@
 <section id="join" class="join court-corner" style="background:#EFEBDF;">
   <div class="wrap">
     <div class="section-head">
-      <div class="kicker">How to join</div>
-      <h2>Three steps to your first session</h2>
-      <p>Membership runs per semester. New to the sport? Come try a session first — just email us so we know to expect you.</p>
+      <div class="kicker" data-i18n="joinKicker">How to join</div>
+      <h2 data-i18n="joinTitle">Three steps to your first session</h2>
+      <p data-i18n="joinIntro">Membership runs per semester. New to the sport? Come try a session first — just email us so we know to expect you.</p>
     </div>
     <ol class="steps">
-      <li><div><h3>Fill in the registration form</h3><p>Name, student number, and which level fits you best. Takes about two minutes.</p></div></li>
-      <li><div><h3>Pay the membership fee</h3><p>Covers your spot in training and league costs where relevant. Payment instructions are on the confirmation page.</p></div></li>
-      <li><div><h3>Check the sports schedule and show up</h3><p>Training times and courts are listed on the Sports Center's schedule — you'll also get added to the club group chat for any changes.</p></div></li>
+      <li><div><h3 data-i18n="joinStep1Title">Fill in the registration form</h3><p data-i18n="joinStep1Body">Name, student number, and which level fits you best. Takes about two minutes.</p></div></li>
+      <li><div><h3 data-i18n="joinStep2Title">Pay the membership fee</h3><p data-i18n="joinStep2Body">Covers your spot in training and league costs where relevant. Payment instructions are on the confirmation page.</p></div></li>
+      <li><div><h3 data-i18n="joinStep3Title">Check the sports schedule and show up</h3><p data-i18n="joinStep3Body">Training times and courts are listed on the Sports Center's schedule — you'll also get added to the club group chat for any changes.</p></div></li>
     </ol>
   </div>
   <div class="join-panel">
-    <div class="fee">Semester membership<strong>Price announced before signup opens</strong></div>
+    <div class="fee"><span data-i18n="joinFeeLabel">Semester membership</span><strong data-i18n="joinFeeValue">Price announced before signup opens</strong></div>
     <div id="join-cta"><p class="join-note">Add your registration form link in the script below to enable online signup.</p></div>
   </div>
 </section>
@@ -262,9 +284,9 @@
 <section id="events" class="court-corner">
   <div class="wrap">
     <div class="section-head">
-      <div class="kicker">Upcoming</div>
-      <h2>Training & events</h2>
-      <p>Weekly training per level, plus league matches and socials. Exact court times are on the Sports Center schedule — edit the list below to match yours.</p>
+      <div class="kicker" data-i18n="eventsKicker">Upcoming</div>
+      <h2 data-i18n="eventsTitle">Training & events</h2>
+      <p data-i18n="eventsIntro">Weekly training per level, plus league matches and socials. Exact court times are on the Sports Center schedule — edit the list below to match yours.</p>
     </div>
     <div class="events-list" id="events-list"></div>
   </div>
@@ -273,22 +295,22 @@
 <section id="contact" class="court-corner">
   <div class="wrap">
     <div class="section-head">
-      <div class="kicker">Location & contact</div>
-      <h2>Find us at the Sports Center</h2>
+      <div class="kicker" data-i18n="contactKicker">Location & contact</div>
+      <h2 data-i18n="contactTitle">Find us at the Sports Center</h2>
     </div>
     <div class="loc-grid">
       <dl class="loc-block">
-        <dt>Address</dt>
-        <dd>Olympia building<br>Academielaan 5<br>5037 ET Tilburg</dd>
-        <dt>Sports Center phone</dt>
+        <dt data-i18n="contactAddressLabel">Address</dt>
+        <dd data-i18n-html="contactAddress">Olympia building<br>Academielaan 5<br>5037 ET Tilburg</dd>
+        <dt data-i18n="contactPhoneLabel">Sports Center phone</dt>
         <dd><a href="tel:0134663010">013 466 3010</a></dd>
-        <dt>Full sports schedule</dt>
-        <dd><a href="https://www.tilburguniversity.edu/nl/campus/sports-center/sportrooster" target="_blank" rel="noopener noreferrer">tilburguniversity.edu/sportrooster (opens in new tab)</a></dd>
+        <dt data-i18n="contactScheduleLabel">Full sports schedule</dt>
+        <dd><a href="https://www.tilburguniversity.edu/nl/campus/sports-center/sportrooster" target="_blank" rel="noopener noreferrer" data-i18n="contactScheduleLink">tilburguniversity.edu/sportrooster (opens in new tab)</a></dd>
       </dl>
       <dl class="loc-block">
         <!-- Add club email and Instagram links here once you have real contact details. -->
-        <dt>Questions before joining?</dt>
-        <dd>Until club contact details are added, use the Sports Center phone number listed here.</dd>
+        <dt data-i18n="contactQuestionsLabel">Questions before joining?</dt>
+        <dd data-i18n="contactQuestionsBody">Until club contact details are added, use the Sports Center phone number listed here.</dd>
       </dl>
     </div>
   </div>
@@ -298,30 +320,158 @@
   <div class="wrap foot-row">
     <div class="wordmark" style="color:#F5F2EA;">T.S.B.V. Sauron</div>
     <ul class="foot-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#join">Join</a></li>
-      <li><a href="#events">Events</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about" data-i18n="navAbout">About</a></li>
+      <li><a href="#join" data-i18n="navJoin">Join</a></li>
+      <li><a href="#events" data-i18n="navEvents">Events</a></li>
+      <li><a href="#contact" data-i18n="navContact">Contact</a></li>
     </ul>
   </div>
-  <div class="wrap foot-fine">T.S.B.V. Sauron — badminton association at Tilburg University's Sports Center.</div>
+  <div class="wrap foot-fine" data-i18n="footerFine">T.S.B.V. Sauron — badminton association at Tilburg University's Sports Center.</div>
 </footer>
 
 <script>
+  const TRANSLATIONS = {
+    en: {
+      pageTitle: "T.S.B.V. Sauron — Tilburg Student Badminton Association",
+      navAbout: "About",
+      navLevels: "Levels",
+      navJoin: "Join",
+      navEvents: "Events",
+      navContact: "Contact",
+      navCta: "Become a member",
+      heroEyebrow: "Student badminton association, Tilburg University",
+      heroTitle: "Badminton for beginners and third-division competitors alike.",
+      heroLede: "T.S.B.V. Sauron is Tilburg University's badminton club — training runs across three levels at the Sports Center, from first-touch technique to competitive league play.",
+      heroPrimaryCta: "Become a member",
+      heroSecondaryCta: "See the levels",
+      aboutKicker: "About the club",
+      aboutTitle: "Run by students, on university courts",
+      aboutBody1: "Sauron is the student badminton association at Tilburg University, and one of the racket sports clubs based at the Sports Center. Training is organised across three levels, so you're grouped with players working on similar things — whether that's learning to count a rally and hold a racket properly, or drilling attacking and defensive doubles tactics for league matches.",
+      aboutBody2: "Alongside organised training, there's plenty of room to just play — the Sports Center keeps daytime slots open for members who want to book a court independently.",
+      aboutBody3: "The club competes in the regional league, with the top squad currently playing third division.",
+      aboutImageAlt: "Stylized badminton player illustration on a court",
+      aboutCaption: "Training happens at the Sports Center — Olympia building, Academielaan 5.",
+      levelsKicker: "Training groups",
+      levelsTitle: "Three levels, one club",
+      levelsIntro: "Registration is required to join level 1 and 2 training groups.",
+      level3Tag: "Level 3 · Beginners",
+      level3Title: "Learning the fundamentals",
+      level3Body: "Footwork, grip, scoring, and stroke technique for each shot, plus match play as you go. The right starting point if you're new to the sport or haven't played competitively before.",
+      level2Tag: "Level 2 · Intermediate",
+      level2Title: "Building match tactics",
+      level2Body: "For players with some league experience who already have the basic strokes down. Focus shifts to doubles tactics, attacking and defensive positioning, and singles strategy.",
+      level1Tag: "Level 1 · Competitive",
+      level1Title: "Training the top teams",
+      level1Body: "Technical and tactical training for the club's highest teams, including circuit and speed work and specialty strokes like the cut smash, drop, flick serve, and drive.",
+      joinKicker: "How to join",
+      joinTitle: "Three steps to your first session",
+      joinIntro: "Membership runs per semester. New to the sport? Come try a session first — just email us so we know to expect you.",
+      joinStep1Title: "Fill in the registration form",
+      joinStep1Body: "Name, student number, and which level fits you best. Takes about two minutes.",
+      joinStep2Title: "Pay the membership fee",
+      joinStep2Body: "Covers your spot in training and league costs where relevant. Payment instructions are on the confirmation page.",
+      joinStep3Title: "Check the sports schedule and show up",
+      joinStep3Body: "Training times and courts are listed on the Sports Center's schedule — you'll also get added to the club group chat for any changes.",
+      joinFeeLabel: "Semester membership",
+      joinFeeValue: "Price announced before signup opens",
+      joinCtaNote: "Add your registration form link in the script below to enable online signup.",
+      joinCtaButton: "Open registration form →",
+      eventsKicker: "Upcoming",
+      eventsTitle: "Training & events",
+      eventsIntro: "Weekly training per level, plus league matches and socials. Exact court times are on the Sports Center schedule — edit the list below to match yours.",
+      eventsEmpty: "No events scheduled yet — check back soon.",
+      contactKicker: "Location & contact",
+      contactTitle: "Find us at the Sports Center",
+      contactAddressLabel: "Address",
+      contactAddress: "Olympia building<br>Academielaan 5<br>5037 ET Tilburg",
+      contactPhoneLabel: "Sports Center phone",
+      contactScheduleLabel: "Full sports schedule",
+      contactScheduleLink: "tilburguniversity.edu/sportrooster (opens in new tab)",
+      contactQuestionsLabel: "Questions before joining?",
+      contactQuestionsBody: "Until club contact details are added, use the Sports Center phone number listed here.",
+      footerFine: "T.S.B.V. Sauron — badminton association at Tilburg University's Sports Center."
+    },
+    nl: {
+      pageTitle: "T.S.B.V. Sauron — Tilburgse Studenten Badmintonvereniging",
+      navAbout: "Over",
+      navLevels: "Niveaus",
+      navJoin: "Lid worden",
+      navEvents: "Evenementen",
+      navContact: "Contact",
+      navCta: "Word lid",
+      heroEyebrow: "Studentenbadmintonvereniging, Tilburg University",
+      heroTitle: "Badminton voor beginners én spelers op derde divisie-niveau.",
+      heroLede: "T.S.B.V. Sauron is de badmintonvereniging van Tilburg University — trainingen worden aangeboden op drie niveaus in het Sports Center, van eerste techniek tot competitief league-spel.",
+      heroPrimaryCta: "Word lid",
+      heroSecondaryCta: "Bekijk de niveaus",
+      aboutKicker: "Over de vereniging",
+      aboutTitle: "Gerund door studenten, op de banen van de universiteit",
+      aboutBody1: "Sauron is de studentenbadmintonvereniging van Tilburg University en één van de racketsportverenigingen in het Sports Center. De trainingen zijn verdeeld over drie niveaus, zodat je traint met spelers die met vergelijkbare onderdelen bezig zijn — of je nu leert tellen en je racket goed vasthoudt, of werkt aan aanvallende en verdedigende dubbelstactieken voor competitiewedstrijden.",
+      aboutBody2: "Naast de georganiseerde trainingen is er ook volop ruimte om vrij te spelen — het Sports Center houdt overdag banen beschikbaar voor leden die zelfstandig een baan willen reserveren.",
+      aboutBody3: "De club speelt mee in de regionale competitie, waarbij het hoogste team momenteel in de derde divisie uitkomt.",
+      aboutImageAlt: "Gestileerde illustratie van een badmintonspeler op een baan",
+      aboutCaption: "De trainingen vinden plaats in het Sports Center — Olympiagebouw, Academielaan 5.",
+      levelsKicker: "Trainingsgroepen",
+      levelsTitle: "Drie niveaus, één vereniging",
+      levelsIntro: "Aanmelden is verplicht voor trainingsgroepen op niveau 1 en 2.",
+      level3Tag: "Niveau 3 · Beginners",
+      level3Title: "De basis leren",
+      level3Body: "Voetwerk, grip, telling en slagtechniek voor elke slag, plus meteen wedstrijdvormen. Het juiste startpunt als je nieuw bent in de sport of niet eerder competitief hebt gespeeld.",
+      level2Tag: "Niveau 2 · Gevorderd",
+      level2Title: "Wedstrijdtactiek opbouwen",
+      level2Body: "Voor spelers met enige competitie-ervaring die de basisslagen al beheersen. De focus verschuift naar dubbeltactiek, aanvallende en verdedigende positionering en enkelstrategie.",
+      level1Tag: "Niveau 1 · Competitie",
+      level1Title: "De topteams trainen",
+      level1Body: "Technische en tactische training voor de hoogste teams van de club, inclusief circuit- en snelheidswerk en speciale slagen zoals de cut smash, drop, flick serve en drive.",
+      joinKicker: "Lid worden",
+      joinTitle: "Drie stappen naar je eerste training",
+      joinIntro: "Het lidmaatschap loopt per semester. Nieuw in de sport? Kom eerst een training proberen — mail ons even zodat we weten dat je komt.",
+      joinStep1Title: "Vul het inschrijfformulier in",
+      joinStep1Body: "Vul je naam, studentnummer en het niveau dat het beste past in. Kost ongeveer twee minuten.",
+      joinStep2Title: "Betaal de contributie",
+      joinStep2Body: "Hiermee reserveer je je trainingsplek en worden, waar relevant, competitiekosten gedekt. De betaalinstructies staan op de bevestigingspagina.",
+      joinStep3Title: "Check het sportrooster en kom langs",
+      joinStep3Body: "Trainingstijden en banen staan in het rooster van het Sports Center — je wordt ook toegevoegd aan de groepschat van de vereniging voor wijzigingen.",
+      joinFeeLabel: "Lidmaatschap per semester",
+      joinFeeValue: "Prijs volgt voordat inschrijven opent",
+      joinCtaNote: "Voeg hieronder je inschrijfformulier-link toe om online inschrijven te activeren.",
+      joinCtaButton: "Open inschrijfformulier →",
+      eventsKicker: "Agenda",
+      eventsTitle: "Trainingen & evenementen",
+      eventsIntro: "Wekelijkse trainingen per niveau, plus competitiewedstrijden en socials. De exacte baantijden staan in het rooster van het Sports Center — pas de lijst hieronder aan naar jullie planning.",
+      eventsEmpty: "Er staan nog geen evenementen gepland — kijk later opnieuw.",
+      contactKicker: "Locatie & contact",
+      contactTitle: "Vind ons in het Sports Center",
+      contactAddressLabel: "Adres",
+      contactAddress: "Olympiagebouw<br>Academielaan 5<br>5037 ET Tilburg",
+      contactPhoneLabel: "Telefoon Sports Center",
+      contactScheduleLabel: "Volledig sportrooster",
+      contactScheduleLink: "tilburguniversity.edu/sportrooster (opent in nieuw tabblad)",
+      contactQuestionsLabel: "Vragen voordat je lid wordt?",
+      contactQuestionsBody: "Totdat contactgegevens van de vereniging zijn toegevoegd, kun je het telefoonnummer van het Sports Center gebruiken.",
+      footerFine: "T.S.B.V. Sauron — badmintonvereniging in het Sports Center van Tilburg University."
+    }
+  };
+
   // ---- Edit this array to update the Events section. No HTML editing needed. ----
   const EVENTS = [
-    { day: "16", month: "Sep", name: "Level 3 training", loc: "Sports Center, Olympia building", time: "19:00–20:30" },
-    { day: "18", month: "Sep", name: "Level 2 training", loc: "Sports Center, Olympia building", time: "20:00–21:30" },
-    { day: "04", month: "Oct", name: "Beginners' welcome night", loc: "Sports Center, Olympia building", time: "19:00–21:00" },
+    { day: "16", month: { en: "Sep", nl: "sep" }, name: { en: "Level 3 training", nl: "Training niveau 3" }, loc: { en: "Sports Center, Olympia building", nl: "Sports Center, Olympiagebouw" }, time: "19:00–20:30" },
+    { day: "18", month: { en: "Sep", nl: "sep" }, name: { en: "Level 2 training", nl: "Training niveau 2" }, loc: { en: "Sports Center, Olympia building", nl: "Sports Center, Olympiagebouw" }, time: "20:00–21:30" },
+    { day: "04", month: { en: "Oct", nl: "okt" }, name: { en: "Beginners' welcome night", nl: "Welkomstavond voor beginners" }, loc: { en: "Sports Center, Olympia building", nl: "Sports Center, Olympiagebouw" }, time: "19:00–21:00" },
   ];
 
   const list = document.getElementById('events-list');
-  if (EVENTS.length === 0) {
-    const empty = document.createElement('div');
-    empty.className = 'events-empty';
-    empty.textContent = 'No events scheduled yet — check back soon.';
-    list.appendChild(empty);
-  } else {
+
+  function renderEvents(lang) {
+    list.replaceChildren();
+    if (EVENTS.length === 0) {
+      const empty = document.createElement('div');
+      empty.className = 'events-empty';
+      empty.textContent = TRANSLATIONS[lang].eventsEmpty;
+      list.appendChild(empty);
+      return;
+    }
+
     EVENTS.forEach((eventItem) => {
       const row = document.createElement('div');
       row.className = 'event-row';
@@ -335,18 +485,18 @@
 
       const month = document.createElement('div');
       month.className = 'm';
-      month.textContent = eventItem.month;
+      month.textContent = eventItem.month[lang];
 
       date.append(day, month);
 
       const details = document.createElement('div');
       const name = document.createElement('div');
       name.className = 'event-name';
-      name.textContent = eventItem.name;
+      name.textContent = eventItem.name[lang];
 
       const location = document.createElement('div');
       location.className = 'event-loc';
-      location.textContent = eventItem.loc;
+      location.textContent = eventItem.loc[lang];
 
       details.append(name, location);
 
@@ -362,13 +512,55 @@
   // ---- Replace with your real Google Form link to enable the registration button. ----
   const JOIN_FORM_URL = "";
   const joinCta = document.getElementById('join-cta');
-  if (JOIN_FORM_URL) {
-    const joinLink = document.createElement('a');
-    joinLink.href = JOIN_FORM_URL;
-    joinLink.className = 'btn btn-primary';
-    joinLink.textContent = 'Open registration form →';
-    joinCta.replaceChildren(joinLink);
+
+  function renderJoinCta(lang) {
+    joinCta.replaceChildren();
+    if (JOIN_FORM_URL) {
+      const joinLink = document.createElement('a');
+      joinLink.href = JOIN_FORM_URL;
+      joinLink.className = 'btn btn-primary';
+      joinLink.textContent = TRANSLATIONS[lang].joinCtaButton;
+      joinCta.appendChild(joinLink);
+      return;
+    }
+
+    const note = document.createElement('p');
+    note.className = 'join-note';
+    note.textContent = TRANSLATIONS[lang].joinCtaNote;
+    joinCta.appendChild(note);
   }
+
+  function setLanguage(lang) {
+    const strings = TRANSLATIONS[lang];
+    document.documentElement.lang = lang;
+    document.title = strings.pageTitle;
+
+    document.querySelectorAll('[data-i18n]').forEach((element) => {
+      element.textContent = strings[element.dataset.i18n];
+    });
+
+    document.querySelectorAll('[data-i18n-html]').forEach((element) => {
+      element.innerHTML = strings[element.dataset.i18nHtml];
+    });
+
+    document.querySelectorAll('[data-i18n-alt]').forEach((element) => {
+      element.alt = strings[element.dataset.i18nAlt];
+    });
+
+    document.querySelectorAll('.lang-switcher button').forEach((button) => {
+      const isActive = button.dataset.lang === lang;
+      button.setAttribute('aria-pressed', String(isActive));
+    });
+
+    renderEvents(lang);
+    renderJoinCta(lang);
+  }
+
+  document.querySelectorAll('.lang-switcher button').forEach((button) => {
+    button.addEventListener('click', () => setLanguage(button.dataset.lang));
+  });
+
+  setLanguage('en');
 </script>
 
 </body>
